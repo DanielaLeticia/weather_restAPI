@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-app-api-deployment
+  labels:
+    app: weather-app-flask
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weather-app-flask
+  template:
+    metadata:
+      labels:
+        app: weather-app-flask
+    spec:
+      containers:
+        - name: weather-app-flask-container
+          imagePullPolicy: Always
+          image: danielasanchez/api:1.0 #insert api name 
+          env:
+          - name: REDIS_IP
+            value: "weather-app-redis-service" #redis service name here
+          ports:
+          - name: http
+            containerPort: 5000

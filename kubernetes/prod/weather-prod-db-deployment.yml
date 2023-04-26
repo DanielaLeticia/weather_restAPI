@@ -1,0 +1,29 @@
+# redis deployment
+---
+ apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   name: weather-app-redis-deployment
+   labels:
+     app: weather-app-redis
+ spec:
+   replicas: 1
+   selector:
+     matchLabels:
+       app: weather-app-redis
+   template:
+     metadata:
+       labels:
+         app: weather-app-redis
+     spec:
+       containers:
+         - name: weather-app-redis-containers
+           image: redis:6
+           command:
+           volumeMounts:
+           - name: weather-app
+             mountPath: "/data"
+       volumes:
+       - name: weather-app
+         persistentVolumeClaim:
+           claimName: weather-app-pvc
