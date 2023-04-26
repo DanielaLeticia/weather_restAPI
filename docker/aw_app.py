@@ -54,7 +54,7 @@ def get_countries():
     country_list = []
     alldata = []
     for item in rd.keys():
-        alldata.append()json.loads(rd.get(item)))
+        alldata.append(json.loads(rd.get(item)))
     max_list = len(alldata)
     for x in range(max_list):
         country_list.append(alldata[x]['country'])
@@ -74,7 +74,7 @@ def get_cities():
     city_list = []
     alldata = []
     for item in rd.keys():
-        alldata.append()json.loads(rd.get(item)))
+        alldata.append(json.loads(rd.get(item)))
     max_list = len(alldata)
     for x in range(max_list):
         city_list.append(alldata[x]['city'])
@@ -91,7 +91,7 @@ def get_location_data(loc_num):
     '''
     alldata = []
     for item in rd.keys():
-        alldata.append()json.loads(rd.get(item)))
+        alldata.append(json.loads(rd.get(item)))
     if loc_num >= len(alldata):
         return "Error: Location value is not in the data set" , 400
     return alldata[loc_num]
@@ -107,7 +107,7 @@ def get_month_high(loc_num):
     '''
     highT = []
     for item in rd.keys():
-        alldata.append()json.loads(rd.get(item)))
+        alldata.append(json.loads(rd.get(item)))
     if loc_num >= len(alldata):
         return "Error: Location value is not in the data set" , 400
     for x in range(12):
@@ -124,7 +124,7 @@ def get_yr_high(loc_num):
             yr_highT (int): the average high temperature for the chosen location for the year
     '''
     for item in rd.keys():
-        alldata.append()json.loads(rd.get(item)))
+        alldata.append(json.loads(rd.get(item)))
     if loc_num >= len(alldata):
         return "Error: Location value is not in the data set" , 400
     highT_list = get_month_high(loc_num)
