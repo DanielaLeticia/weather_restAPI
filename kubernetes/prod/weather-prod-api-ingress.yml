@@ -15,9 +15,9 @@ spec:
           path: "/"
           backend:
             service:
-              name: flasktest-service-nodeport
+              name: weather-app-service-nodeport
               port:
-                  number: #port number here
+                  number: 31863
 
 
 #notes:
