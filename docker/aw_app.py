@@ -20,6 +20,15 @@ rd_img = get_redis_client(1, False)
 
 
 
+@app.route('/download/<jobid>', methods=['GET'])
+def download(jobid):
+    path = f'/app/{jobid}.png'
+    with open(path, 'wb') as f:
+        f.write(rd.hget(jobid, 'image'))
+    return send_file(path, mimetype='image/png', as_attachment=True)
+
+
+
 @app.route('/data', methods=['POST','GET','DELETE'])
 def handle_data():
     '''
