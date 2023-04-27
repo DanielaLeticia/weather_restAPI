@@ -19,6 +19,26 @@ rd = get_redis_client(0, True)
 rd_img = get_redis_client(1, False)
 
 
+redis_ip = os.environ.get('REDIS_IP', '172.17.0.1')
+q = HotQueue("queue", host=redis_ip, port=6379, db=1)
+
+
+@app.route('/jobs', methods=['POST'])
+def jobs_api():
+    '''
+      API route for creating a new job to do some analysis. This route accepts a JSON payload
+      describing the job to be created.
+    '''
+    try:
+        job = request.get_json(force=True)
+    except Exception as e:
+        return True, json.dumps({'status': "Error", 'message': 'Invalid JSON: {}.'.format(e)})
+    return json.dumps(jobs.add_job(job['start'], job['end']))
+
+
+
+
+
 
 @app.route('/download/<jobid>', methods=['GET'])
 def download(jobid):
